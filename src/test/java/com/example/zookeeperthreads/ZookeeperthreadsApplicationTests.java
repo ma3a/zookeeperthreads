@@ -16,22 +16,22 @@ import static org.junit.Assert.assertEquals;
 @SpringBootTest
 public class ZookeeperthreadsApplicationTests {
 
-	static {
-		try {
-			TestingServer testingServer = new TestingServer(2181);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+    static {
+        try {
+            TestingServer testingServer = new TestingServer(2181);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
-	@Autowired
+    @Autowired
     CuratorFramework curatorFramework;
 
     /**
-     * This test shows
+     * This test shows thread grow
      */
-	@Test
-	public void contextLoads() throws Exception {
+    @Test
+    public void contextLoads() throws Exception {
         Thread.sleep(5000); // waiting to make sure that all curatorframework objects are created
 
         int before = getCuratorsThreadCount();
@@ -44,7 +44,7 @@ public class ZookeeperthreadsApplicationTests {
     }
 
     public static int getCuratorsThreadCount() {
-	    int count = 0;
+        int count = 0;
         Map<Thread, StackTraceElement[]> allStackTraces = Thread.getAllStackTraces();
         for (Thread thread : allStackTraces.keySet()) {
             if (thread.getName().contains("Curator")) {
