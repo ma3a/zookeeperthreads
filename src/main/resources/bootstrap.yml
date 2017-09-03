@@ -1,0 +1,7 @@
+spring:
+  cloud:
+    zookeeper:
+      config:
+        root: /root
+  application:
+    name: app
